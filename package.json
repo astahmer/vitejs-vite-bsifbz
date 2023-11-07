@@ -1,0 +1,51 @@
+{
+  "name": "themasix-panda-package",
+  "version": "0.1.0",
+  "main": "build/cjs/index.js",
+  "module": "build/esm/index.js",
+  "types": "build/types/index.d.ts",
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {
+    "prepare": "panda codegen",
+    "dev": "vite",
+    "build:clear": "rm -rf ./build",
+    "build:rollup": "rollup -c rollup.config.mjs",
+    "build:panda": "panda ship --outfile build/panda.buildinfo.json",
+    "deploy": "npm run build:package && npm publish",
+    "build:package": "npm run build:clear && npm run build:rollup && npm run build:panda",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "files": [
+    "build"
+  ],
+  "devDependencies": {
+    "@pandacss/dev": "^0.17.3",
+    "@rollup/plugin-alias": "^5.0.1",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@types/node": "^20.8.10",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitejs/plugin-react": "^4.0.3",
+    "esbuild": "^0.19.5",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "rollup": "^3.15.0",
+    "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-dts": "^6.1.0",
+    "rollup-plugin-esbuild": "^6.1.0",
+    "rollup-plugin-node-externals": "^6.1.2",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5"
+  }
+}
